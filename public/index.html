@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClimaTrack | Weather Monitoring</title><link rel="stylesheet" href="styles.css">
+</head><body>
+<aside class="sidebar"><div class="brand"><span class="sun">☼</span><div><b>ClimaTrack</b><small>WEATHER MONITORING</small></div></div>
+<p class="side-label">WORKSPACE</p><a class="nav active" href="#overview">▦ &nbsp; Overview</a><a class="nav" href="#observations">☷ &nbsp; Observations</a><a class="nav" href="#add-reading">＋ &nbsp; Add reading</a>
+<div class="side-status"><i id="status-dot"></i><div><b>System status</b><small id="connection-label">Checking database…</small></div></div></aside>
+<main><header class="topbar"><div><p class="eyebrow">WEATHER INTELLIGENCE / INDIA</p><h1>Weather overview</h1><p class="sub">Monitor station readings and explore saved weather records.</p></div><button id="refresh">↻ Refresh</button></header>
+<div id="banner" class="banner">Connecting to backend…</div>
+<section class="metrics" id="overview">
+<div class="metric"><span>Total readings</span><strong id="total-readings">—</strong><small>Saved weather observations</small></div>
+<div class="metric"><span>Locations</span><strong id="total-locations">—</strong><small>Configured monitoring points</small></div>
+<div class="metric"><span>Average temperature</span><strong id="average-temperature">—</strong><small>Across saved readings</small></div>
+<div class="metric"><span>Latest humidity</span><strong id="latest-humidity">—</strong><small>Most recent observation</small></div></section>
+<section class="columns"><article class="panel"><div class="panel-head"><div><p class="eyebrow">RECENT DATA</p><h2>Average temperature by city</h2></div><span class="pill">°C</span></div><div id="temperature-bars" class="bars">Loading summary…</div><p class="note">Based on database records. This dashboard does not provide a live forecast.</p></article>
+<article class="panel" id="add-reading"><div class="panel-head"><div><p class="eyebrow">DATA ENTRY</p><h2>Add a reading</h2></div><span class="plus">＋</span></div>
+<form id="weather-form"><label>Location<select id="location_id" name="location_id" required><option value="">Loading locations…</option></select></label>
+<label>Observation date and time<input id="observation_time" name="observation_time" type="datetime-local" required></label>
+<div class="form-row"><label>Temperature (°C)<input name="temperature" type="number" step=".01" required placeholder="29.5"></label><label>Humidity (%)<input name="humidity" type="number" min="0" max="100" step=".01" required placeholder="65"></label></div>
+<div class="form-row"><label>Rainfall (mm)<input name="rainfall" type="number" min="0" step=".01" required placeholder="0"></label><label>Wind speed (km/h)<input name="wind_speed" type="number" min="0" step=".01" required placeholder="12"></label></div>
+<button class="primary" id="submit-btn" type="submit">Save observation →</button><p id="form-message" role="status"></p></form></article></section>
+<section class="panel table-panel" id="observations"><div class="panel-head table-head"><div><p class="eyebrow">DATABASE RECORDS</p><h2>Weather observations</h2></div><div class="filters"><select id="city-filter" aria-label="Filter by city"><option value="">All cities</option></select><button id="table-refresh" class="secondary">Refresh records ↻</button></div></div>
+<div class="table-scroll"><table><thead><tr><th>City / Station</th><th>Date & time</th><th>Temperature</th><th>Humidity</th><th>Rainfall</th><th>Wind speed</th></tr></thead><tbody id="weather-table-body"><tr><td colspan="6">Loading observations…</td></tr></tbody></table></div><div class="table-foot"><span id="record-count">0 records</span><span>Source: WeatherMonitoringDB</span></div></section>
+<footer>ClimaTrack · Weather Monitoring System <span>Node.js + Express + MySQL</span></footer></main><script src="app.js"></script></body></html>
